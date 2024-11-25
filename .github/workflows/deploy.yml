@@ -1,0 +1,27 @@
+name: Despliegue
+
+on: workflow_dispatch
+
+jobs:
+  pre-deploy:
+    name: Preparación del despliegue
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.extract_version.outputs.version }}
+    steps:    
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      
+      - name: Extract Version from pom.xml
+        id: extract_version
+        run: |
+          VERSION=$(xmllint --xpath "string(//project/version)" pom.xml)
+          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+
+  deploy:
+    needs: pre-deploy
+    uses:  stemdo-labs/final-project-exercise-RafaGll/.github/workflows/ci.yml@workflow
+    with:
+      image_url: ${{ needs.pre-deploy.outputs.version }}
+      deploy: backend
+
