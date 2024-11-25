@@ -21,12 +21,12 @@ jobs:
         id: extract_version
         run: |
           VERSION=$(xmllint --xpath "string(//project/version)" pom.xml)
-          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
   deploy:
     needs: pre-deploy
     uses: stemdo-labs/final-project-exercise-RafaGll/.github/workflows/ci.yml@workflow
     with:
-      image_url: ${{ needs.pre-deploy.outputs.version }}
+      version: ${{ needs.pre-deploy.outputs.version }}
       deploy: backend
 
