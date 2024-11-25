@@ -1,4 +1,4 @@
-name: Build and Push to ACR
+name: Build and Push to ACR (Backend)
 
 on:
   workflow_call:
@@ -27,8 +27,11 @@ jobs:
         with:
           repository: stemdo-labs/final-project-gestion-orquestas-backend-RafaGll@main
 
-      - name: print
-        run: ls -la
+      - name: Extract Version from pom.xml
+        id: extract_version
+        run: |
+          VERSION=$(xmllint --xpath "string(//project/version)" pom.xml)
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
       - name: Log in to Azure
         uses: azure/login@v1
@@ -39,12 +42,19 @@ jobs:
 
       - name: Log in to ACR
         run: |
-          az acr login --name ${{ secrets.acr_login_server }}
+          az acr login --name ${{ inputs.acr_login_server }}
 
       - name: Build Docker Image
         run: |
-          docker build -t ${{ secrets.acr_login_server }}/backend:latest .
+          docker build -t ${{ inputs.acr_login_server }}/backend:${{ env.VERSION }} .
 
       - name: Push Docker Image to ACR
         run: |
-          docker push ${{ secrets.acr_login_server }}/backend:latest
+          docker push ${{ inputs.acr_login_server }}/backend:${{ env.VERSION }}
+
+      - name: Set job outputs
+        id: set_outputs
+        run: echo "image_url=${{ inputs.acr_login_server }}/backend:${{ env.VERSION }}" >> $GITHUB_OUTPUT
+
+    outputs:
+      image_url: ${{ steps.set_outputs.outputs.image_url }}
