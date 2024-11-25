@@ -33,9 +33,9 @@ jobs:
       - name: Log in to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.client_id }}
-          client-secret: ${{ secrets.client_secret }}
-          tenant-id: ${{ secrets.tenant_id }}
+          client-id: ${{ secrets.ARM_CLIENT_ID }}
+          client-secret: ${{ secrets.ARM_CLIENT_SECRET }}
+          tenant-id: ${{ secrets.ARM_TENANT_ID }}
 
       - name: Log in to ACR
         run: |
