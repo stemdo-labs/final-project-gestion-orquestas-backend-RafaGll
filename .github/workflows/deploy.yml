@@ -29,4 +29,6 @@ jobs:
     with:
       version: ${{ needs.pre-deploy.outputs.version }}
       deploy: backend
+    secrets:
+      PAT: ${{ secrets.PAT }}
 
