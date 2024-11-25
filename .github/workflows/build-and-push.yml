@@ -2,22 +2,17 @@ name: Build and Push to ACR
 
 on:
   workflow_call:
-    inputs:
+    secrets:
       client_id:
         required: true
-        type: string
       client_secret:
         required: true
-        type: string
       tenant_id:
         required: true
-        type: string
       subscription_id:
         required: true
-        type: string
       acr_login_server:
         required: true
-        type: string
 
 jobs:
   build-and-push:
@@ -34,18 +29,18 @@ jobs:
       - name: Log in to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ inputs.client_id }}
-          client-secret: ${{ inputs.client_secret }}
-          tenant-id: ${{ inputs.tenant_id }}
+          client-id: ${{ secrets.client_id }}
+          client-secret: ${{ secrets.client_secret }}
+          tenant-id: ${{ secrets.tenant_id }}
 
       - name: Log in to ACR
         run: |
-          az acr login --name ${{ inputs.acr_login_server }}
+          az acr login --name ${{ secrets.acr_login_server }}
 
       - name: Build Docker Image
         run: |
-          docker build -t ${{ inputs.acr_login_server }}/backend:latest .
+          docker build -t ${{ secrets.acr_login_server }}/backend:latest .
 
       - name: Push Docker Image to ACR
         run: |
-          docker push ${{ inputs.acr_login_server }}/backend:latest
+          docker push ${{ secrets.acr_login_server }}/backend:latest
