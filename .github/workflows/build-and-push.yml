@@ -11,8 +11,10 @@ on:
         required: true
       subscription_id:
         required: true
+    inputs:
       acr_login_server:
         required: true
+        type: string
 
 jobs:
   build-and-push:
