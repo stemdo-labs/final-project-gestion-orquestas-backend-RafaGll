@@ -3,13 +3,13 @@ name: Build and Push to ACR
 on:
   workflow_call:
     secrets:
-      client_id:
+      ARM_CLIENT_ID:
         required: true
-      client_secret:
+      ARM_CLIENT_SECRET:
         required: true
-      tenant_id:
+      ARM_TENANT_ID:
         required: true
-      subscription_id:
+      ARM_SUBSCRIPTION_ID:
         required: true
     inputs:
       acr_login_server:
