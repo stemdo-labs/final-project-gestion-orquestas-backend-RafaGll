@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   pre-deploy:
     name: Preparación del despliegue
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, pruebas]
     outputs:
       version: ${{ steps.extract_version.outputs.version }}
     steps:    
