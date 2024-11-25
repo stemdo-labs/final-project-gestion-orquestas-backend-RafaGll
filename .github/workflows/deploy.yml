@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   pre-deploy:
     name: Preparación del despliegue
-    runs-on: [self-hosted, pruebas]
+    runs-on: self-hosted
     outputs:
       version: ${{ steps.extract_version.outputs.version }}
     steps:    
