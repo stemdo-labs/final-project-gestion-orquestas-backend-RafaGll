@@ -20,7 +20,7 @@ jobs:
 
   deploy:
     needs: pre-deploy
-    uses:  stemdo-labs/final-project-exercise-RafaGll/.github/workflows/ci.yml@workflow
+    uses: stemdo-labs/final-project-exercise-RafaGll/.github/workflows/ci.yml@workflow
     with:
       image_url: ${{ needs.pre-deploy.outputs.version }}
       deploy: backend
