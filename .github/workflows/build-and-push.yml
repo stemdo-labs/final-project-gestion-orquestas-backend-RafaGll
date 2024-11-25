@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+          repository: stemdo-labs/final-project-gestion-orquestas-backend-RafaGll
 
       - name: print
         run: ls -la
