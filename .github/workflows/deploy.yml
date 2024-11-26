@@ -9,7 +9,7 @@ permissions:
 jobs:
   pre-deploy:
     name: Preparación del despliegue
-    runs-on: runner-stemdo-labs
+    runs-on: self-hosted
     outputs:
       version: ${{ steps.extract_version.outputs.version }}
     steps:    
