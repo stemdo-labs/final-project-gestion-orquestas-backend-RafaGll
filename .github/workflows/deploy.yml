@@ -21,11 +21,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libxml2-utils
       
+
       - name: Extract Version from pom.xml
         id: extract_version
         run: |
-          VERSION=$(xmllint --xpath "string(//project/version)" pom.xml)
-          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          VERSION=$(grep -oP '<version>\K[^\<]+' pom.xml | sed -n '2p')
+          echo "::set-output name=version::$VERSION"
 
   deploy:
     needs: pre-deploy
