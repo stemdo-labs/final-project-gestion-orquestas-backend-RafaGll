@@ -1,6 +1,9 @@
 name: Despliegue
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
 
 permissions:
   id-token: write
