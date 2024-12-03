@@ -4,7 +4,7 @@ image:
   tag: 0.0.2-SNAPSHOT
 imagePullSecret: acr-secret
 env:
-  dbHost: 10.0.27.5
+  dbHost: 10.0.27.4
   dbPort: "5432"
   dbName: mydb
   dbUser: rgonzalez
