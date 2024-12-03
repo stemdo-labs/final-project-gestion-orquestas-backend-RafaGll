@@ -4,10 +4,10 @@ image:
   tag: 0.0.2-SNAPSHOT
 imagePullSecret: acr-secret
 env:
-  dbHost: 10.0.1.5
+  dbHost: 10.0.27.5
   dbPort: "5432"
   dbName: mydb
-  dbUser: postgres
+  dbUser: rgonzalez
   secretName: db-secret
   secretKey: password
 resources:
