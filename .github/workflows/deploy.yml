@@ -31,6 +31,7 @@ jobs:
           VERSION=$(grep -oP '<version>\K[^\<]+' pom.xml | sed -n '2p')
           echo "Extracted version: $VERSION"
           echo "version=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Update values.yml
         run: |
