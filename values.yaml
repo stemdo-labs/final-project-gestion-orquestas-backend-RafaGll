@@ -1,0 +1,19 @@
+replicaCount: 1
+image:
+  repository: acrfinalprojectrafa.azurecr.io/backend
+  tag: 0.0.2-SNAPSHOT
+imagePullSecret: acr-secret
+env:
+  dbHost: "10.0.1.5"
+  dbPort: "5432"
+  dbName: mydb
+  dbUser: postgres
+  secretName: db-secret
+  secretKey: password
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "500m"
+  limits:
+    memory: "1Gi"
+    cpu: "1"

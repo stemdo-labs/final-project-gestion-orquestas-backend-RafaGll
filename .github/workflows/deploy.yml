@@ -29,7 +29,18 @@ jobs:
         id: extract_version
         run: |
           VERSION=$(grep -oP '<version>\K[^\<]+' pom.xml | sed -n '2p')
-          echo "::set-output name=version::$VERSION"
+          echo "Extracted version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_ENV
+
+      - name: Update values.yml
+        run: |
+          sed -i "s/tag:.*/tag: ${{ env.version }}/" values.yml
+
+      - name: Upload updated values.yml
+        uses: actions/upload-artifact@v3
+        with:
+          name: values-yml
+          path: values.yml
 
   deploy:
     needs: pre-deploy
