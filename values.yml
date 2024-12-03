@@ -12,8 +12,8 @@ env:
   secretKey: password
 resources:
   requests:
-    memory: "512Mi"
+    memory: "500Mi"
     cpu: "200m"
   limits:
-    memory: "500Mi"
+    memory: "750Mi"
     cpu: "600m"
