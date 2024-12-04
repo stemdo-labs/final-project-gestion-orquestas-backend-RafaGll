@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 2
 image:
   repository: acrfinalprojectrafa.azurecr.io/backend
   tag: 0.0.2-SNAPSHOT
