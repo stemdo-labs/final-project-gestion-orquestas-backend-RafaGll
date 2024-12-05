@@ -49,13 +49,4 @@ jobs:
     with:
       version: ${{ needs.pre-deploy.outputs.version }}
       deploy: backend
-    secrets:
-      PAT: ${{ secrets.PAT }}
-      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      HARBOR_USER: ${{ secrets.HARBOR_USER}}
-      HARBOR_PASS: ${{ secrets.HARBOR_PASS}}
-      PASSWORD_DB: ${{ secrets.PASSWORD_DB}}
-
+    secrets: inherit
