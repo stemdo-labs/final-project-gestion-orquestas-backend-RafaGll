@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.extract_version.outputs.version }}
-      output: ${{ steps.get-tipo.outputs.tipo }}
+      tipo: ${{ steps.get-tipo.outputs.tipo }}
     steps:    
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -56,7 +56,6 @@ jobs:
 
   deploy:
     needs: pre-deploy
-    if: ${{ github.event_name == 'push' && github.ref != 'refs/heads/main' }}
     uses: stemdo-labs/final-project-exercise-RafaGll/.github/workflows/ci.yml@workflow
     with:
       version: ${{ needs.pre-deploy.outputs.version }}
