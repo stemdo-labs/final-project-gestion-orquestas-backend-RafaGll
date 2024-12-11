@@ -1,4 +1,4 @@
-replicaCount: 2
+replicaCount: 1
 environment: development
 image:
   repository: acrfinalprojectrafa.azurecr.io/backend_dev
