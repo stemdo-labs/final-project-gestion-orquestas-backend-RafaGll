@@ -1,4 +1,5 @@
 replicaCount: 2
+environment: development
 image:
   repository: acrfinalprojectrafa.azurecr.io/backend
   tag: 0.0.2-SNAPSHOT
