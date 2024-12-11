@@ -1,7 +1,7 @@
 replicaCount: 2
 environment: development
 image:
-  repository: acrfinalprojectrafa.azurecr.io/backend
+  repository: acrfinalprojectrafa.azurecr.io/backend_dev
   tag: 0.0.2-SNAPSHOT
 imagePullSecret: acr-secret
 env:
