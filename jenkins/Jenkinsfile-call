@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    triggers {
+        // Solo ejecutar cuando se haga push a la rama main
+        pollSCM('* * * * *')
+    }
+    stages {
+        stage('Call Shared Pipeline') {
+            steps {
+                script {
+                    // Llamar al pipeline del repositorio compartido
+                    build job: '/shared-pipeline', // Nombre del pipeline compartido
+                          parameters: [
+                              string(name: 'REPO_NAME', value: env.JOB_NAME),  // Nombre del repo actual
+                              string(name: 'BRANCH_NAME', value: env.BRANCH_NAME) // Rama donde ocurrió el push
+                          ]
+                }
+            }
+        }
+    }
+}
